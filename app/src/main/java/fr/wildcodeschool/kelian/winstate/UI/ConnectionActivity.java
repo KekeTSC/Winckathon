@@ -28,10 +28,6 @@ public class ConnectionActivity extends AppCompatActivity {
 
         mAuthController = AuthController.getInstance();
 
-        if (mAuthController.isThereCurrentUser()){
-            startActivity(new Intent(ConnectionActivity.this, WinLinkActivity.class));
-        }
-
         Button buttonSignIn = findViewById(R.id.button_signin);
         Button buttonCreateAccount = findViewById(R.id.button_create_account);
         mEmail = findViewById(R.id.input_email);
