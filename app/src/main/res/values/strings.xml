@@ -10,6 +10,17 @@
     <string name="password_initialization_failed">Echec de l\'initialisation du mot de passe</string>
     <string name="description_reset_password">Afin de réinitialiser votre mot de passe, merci d\'entrer votre adresse e-mail et de cliquer sur le bouton. Vous recevrez alors les instructions par e-mail.</string>
 
+    <string name="skip">SKIP</string>
+
+    <string name="slide_1_title">Pensez SteeryFit</string>
+    <string name="slide_1_desc">Parce que nous désirons vous aider à partager votre passion</string>
+
+    <string name="slide_2_title">Dormez SteeryFit</string>
+    <string name="slide_2_desc">Parce que nous sommes soucieux que vous puissiez la pratiquer en toute sécurité</string>
+
+    <string name="slide_3_title">Vivez SteeryFit</string>
+    <string name="slide_3_desc">Parce que nous souhaitions redonner au sport ses vertus premières de socialisation de plaisir de rencontrer d\'épanouissement personnel et professionnel</string>
+
 
     <string name="authfailed">L\'authentification à echoué.</string>
     <string name="registartion">Connexion en cours..</string>
