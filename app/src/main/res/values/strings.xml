@@ -9,6 +9,8 @@
     <string name="instructions_sent_by_email">Nous vous avons envoyé les instructions par e-mail</string>
     <string name="password_initialization_failed">Echec de l\'initialisation du mot de passe</string>
     <string name="description_reset_password">Afin de réinitialiser votre mot de passe, merci d\'entrer votre adresse e-mail et de cliquer sur le bouton. Vous recevrez alors les instructions par e-mail.</string>
+    <string name="send_email">Email envoyé</string>
+    <string name="failure">Echec de la suppression</string>
 
     <string name="skip">SKIP</string>
 
@@ -38,4 +40,11 @@
     <string name="authentication_failed">Echec de l\'authentification</string>
     <string name="welcome">Bienvenu !</string>
     <string name="reset_password">Mot de Passe oublié? Réinitialisez le mot de passe.</string>
+
+    <array name="spinnerGender">
+        <item>Homme</item>
+        <item>Femme</item>
+        <item>Enfant</item>
+        <item>Renne de Santa Nora</item>
+    </array>
 </resources>
