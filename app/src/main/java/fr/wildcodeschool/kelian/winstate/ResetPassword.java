@@ -32,7 +32,7 @@ public class ResetPassword extends AppCompatActivity {
         gotoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ResetPassword.this, MainActivity.class);
+                Intent i = new Intent(ResetPassword.this, ConnectionActivity.class);
                 startActivity(i);
                 finish();
             }
