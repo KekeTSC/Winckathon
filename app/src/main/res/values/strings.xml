@@ -9,5 +9,11 @@
     <string name="login_title">Connexion</string>
     <string name="login_user_email">Email</string>
     <string name="password">Mot de passe</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
     <string name="create_account">Créer un compte</string>
+    <string name="please_fill_email">Veuillez remplir l\'email</string>
+    <string name="please_fill_password">Veuillez remplir le mot de passe</string>
+    <string name="please_fill_password_confirm">Veuillez confirmer le mot de passe</string>
+    <string name="authentication_failed">Echec de l\'authentification</string>
+    <string name="welcome">Bienvenu !</string>
 </resources>
