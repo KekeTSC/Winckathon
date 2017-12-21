@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context="fr.wildcodeschool.kelian.winstate.UI.ResultActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/res"
+        />
+
 </android.support.constraint.ConstraintLayout>

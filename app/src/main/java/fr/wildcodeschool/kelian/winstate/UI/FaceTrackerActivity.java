@@ -82,6 +82,8 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     private static final String TAG = "FaceTracker";
     public String st;
     public String ts;
+    public float x;
+    public float y;
 
     private CameraSource mCameraSource = null;
 
@@ -148,7 +150,10 @@ public final class FaceTrackerActivity extends AppCompatActivity {
                                 count--;
                                 mTimer.setText(String .valueOf(count));
                                 if (count == 0){
-                                    startActivity(new Intent(FaceTrackerActivity.this, ResultActivity.class));
+                                    Intent i = new Intent(FaceTrackerActivity.this, ResultActivity.class);
+                                    i.putExtra("x",st);
+                                    i.putExtra("y",ts);
+                                    startActivity(i);
                                 }
                             }
                         });
@@ -378,6 +383,8 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         public void onUpdate(FaceDetector.Detections<Face> detectionResults, Face face) {
             mOverlay.add(mFaceGraphic);
             mFaceGraphic.updateFace(face);
+            x = face.getIsLeftEyeOpenProbability();
+            y = face.getIsRightEyeOpenProbability();
             st = String.valueOf(face.getIsLeftEyeOpenProbability());
             ts = String.valueOf(face.getIsRightEyeOpenProbability());
         }
