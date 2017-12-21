@@ -52,8 +52,10 @@ public class AuthController {
     }
 
     public boolean isThereCurrentUser() {
-        setUid(mUser.getUid());
-        loadModel();
+        if (mUser != null) {
+            setUid(mUser.getUid());
+            loadModel();
+        }
         return mUser != null;
     }
 

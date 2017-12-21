@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.wildcodeschool.kelian.winstate.Controllers.AuthController;
@@ -35,6 +36,8 @@ public class ConnectionActivity extends AppCompatActivity {
         Button buttonCreateAccount = findViewById(R.id.button_create_account);
         mEmail = findViewById(R.id.input_email);
         mPassword = findViewById(R.id.input_password);
+        TextView resetPassword = findViewById(R.id.tv_login_reset_password);
+
 
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +56,15 @@ public class ConnectionActivity extends AppCompatActivity {
                 }
             }
         });
+
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentLogin = new Intent(ConnectionActivity.this, ResetPassword.class);
+                startActivity(intentLogin);
+            }
+        });
+
 
         buttonCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
