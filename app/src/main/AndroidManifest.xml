@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UI.SplashActivity" />
+        <activity android:name=".UI.MenuActivity" />
+        <activity android:name=".UI.FaceActivity" />
+        <activity
+            android:name=".UI.WinlinkActivity"
+            android:label="@string/title_activity_winlink"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
