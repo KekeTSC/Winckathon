@@ -11,4 +11,14 @@
     <string name="slide_3_title">Vivez SteeryFit</string>
     <string name="slide_3_desc">Parce que nous souhaitions redonner au sport ses vertus premières de socialisation de plaisir de rencontrer d\'épanouissement personnel et professionnel</string>
 
+
+    <string name="authfailed">L\'authentification à echoué.</string>
+    <string name="registartion">Connexion en cours..</string>
+    <string name="empties_fields">Veuillez remplir tout les champs</string>
+
+    <string name="login_button_connexion">Se connecter</string>
+    <string name="login_title">Connexion</string>
+    <string name="login_user_email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="create_account">Créer un compte</string>
 </resources>
