@@ -70,7 +70,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
             mPseudoCard.setText(userModel.getPseudonyme());
             mNameCard.setText(userModel.getName());
-            mGenderCard.setText(userModel.isMale());
+            mGenderCard.setText(userModel.getGender());
         }
     }
 }
