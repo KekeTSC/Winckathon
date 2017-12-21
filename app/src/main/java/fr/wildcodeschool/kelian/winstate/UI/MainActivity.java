@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         _winIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, WinLinkActivity.class));
+                startActivity(new Intent(MainActivity.this, SalonActivity.class));
             }
         });
     }

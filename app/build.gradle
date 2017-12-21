@@ -47,6 +47,9 @@ dependencies {
 
     //CropImage
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.5.+'
+
+    //GifImageView
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
 }
 
 

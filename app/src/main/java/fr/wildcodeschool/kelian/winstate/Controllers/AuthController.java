@@ -24,9 +24,8 @@ import java.util.Observable;
 
 import fr.wildcodeschool.kelian.winstate.Models.UserModel;
 import fr.wildcodeschool.kelian.winstate.R;
+import fr.wildcodeschool.kelian.winstate.UI.MainActivity;
 import fr.wildcodeschool.kelian.winstate.UI.ModifUserActivity;
-import fr.wildcodeschool.kelian.winstate.UI.WinLinkActivity;
-
 
 public class AuthController extends Observable {
     private static volatile AuthController sInstance = null;
@@ -81,7 +80,7 @@ public class AuthController extends Observable {
                         progressDialog.dismiss();
                         setUser(mAuth.getCurrentUser());
                         loadModel();
-                        Intent intent = new Intent(activity, WinLinkActivity.class);
+                        Intent intent = new Intent(activity, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK  );
                         activity.startActivity(intent);
                     }
