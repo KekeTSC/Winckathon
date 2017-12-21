@@ -29,14 +29,14 @@ public class ResetPassword extends AppCompatActivity {
         Button resetPassword = findViewById(R.id.btn_reset_password);
         final TextView gotoLogin = findViewById(R.id.tv_reset_goto_login);
 
-       /* gotoLogin.setOnClickListener(new View.OnClickListener() {
+        gotoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ResetPassword.this, .class);
+                Intent i = new Intent(ResetPassword.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }
-        });*/
+        });
 
         resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,4 +10,14 @@
     <string name="password_initialization_failed">Echec de l\'initialisation du mot de passe</string>
     <string name="description_reset_password">Afin de réinitialiser votre mot de passe, merci d\'entrer votre adresse e-mail et de cliquer sur le bouton. Vous recevrez alors les instructions par e-mail.</string>
 
+
+    <string name="authfailed">L\'authentification à echoué.</string>
+    <string name="registartion">Connexion en cours..</string>
+    <string name="empties_fields">Veuillez remplir tout les champs</string>
+
+    <string name="login_button_connexion">Se connecter</string>
+    <string name="login_title">Connexion</string>
+    <string name="login_user_email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="create_account">Créer un compte</string>
 </resources>
