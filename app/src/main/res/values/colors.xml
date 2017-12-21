@@ -33,4 +33,34 @@
     <color name="light_grey">#EEEEEE</color>
     <color name="vert_admin_referent">#43e274</color>
     <color name="bleu_maj_atelier">#12E9CC</color>
+    <color name="yellow">#ffdc00</color>
+    <color name="blue">#1e3278</color>
+    <color name="grey">#ebf0f0</color>
+
+    <!-- dots inactive colors -->
+    <color name="dotLightScreen1">#1e3278</color>
+    <color name="dotLightScreen2">#1e3278</color>
+    <color name="dotLightScreen3">#1e3278</color>
+    <color name="dotLightScreen4">#1e3278</color>
+
+    <!-- dots active colors -->
+    <color name="dotDarkScreen1">#ebf0f0</color>
+    <color name="dotDarkScreen2">#ebf0f0</color>
+    <color name="dotDarkScreen3">#ebf0f0</color>
+    <color name="dotDarkScreen4">#ebf0f0</color>
+
+    <array name="array_dot_active">
+        <item>@color/dotLightScreen1</item>
+        <item>@color/dotLightScreen2</item>
+        <item>@color/dotLightScreen3</item>
+        <item>@color/dotLightScreen4</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dotDarkScreen1</item>
+        <item>@color/dotDarkScreen2</item>
+        <item>@color/dotDarkScreen3</item>
+        <item>@color/dotDarkScreen4</item>
+    </array>
+
 </resources>
