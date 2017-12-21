@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+  <fr.wildcodeschool.kelian.winstate.Controllers.CameraSourcePreview
+      android:id="@+id/preview"
+      android:layout_width="match_parent"
+      android:layout_height="300dp">
+
+    <fr.wildcodeschool.kelian.winstate.Controllers.GraphicOverlay
+        android:id="@+id/faceOverlay"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+  </fr.wildcodeschool.kelian.winstate.Controllers.CameraSourcePreview>
+
+  <TextView
+      android:id="@+id/resusu"
+      android:textColor="@color/black"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+  <TextView
+      android:id="@+id/resusu1"
+      android:textColor="@color/black"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+  <Button
+      android:id="@+id/btt"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="goooo"/>
+
+
+</LinearLayout>

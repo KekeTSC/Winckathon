@@ -51,19 +51,11 @@ dependencies {
 
     //GifImageView
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
+
+    // Face Traker
+    implementation 'com.google.android.gms:play-services-vision:11.8.0'
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 apply plugin: 'com.google.gms.google-services'
