@@ -1,13 +1,15 @@
-package fr.wildcodeschool.kelian.winstate;
+package fr.wildcodeschool.kelian.winstate.UI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import fr.wildcodeschool.kelian.winstate.R;
+
+public class WinLinkActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_win_link);
     }
 }

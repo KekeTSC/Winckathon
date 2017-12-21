@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "504246731400",
+    "firebase_url": "https://winstate-b756d.firebaseio.com",
+    "project_id": "winstate-b756d",
+    "storage_bucket": "winstate-b756d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504246731400:android:69100e895aab13dd",
+        "android_client_info": {
+          "package_name": "fr.wildcodeschool.kelian.winstate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504246731400-pda4l8jp4miv5drdm1tli7ubfcqrnlv6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.wildcodeschool.kelian.winstate",
+            "certificate_hash": "99938ac99d840dcd9ba3d15a99bec6e2bf32096e"
+          }
+        },
+        {
+          "client_id": "504246731400-id6p9k5raokir3or13hu083vvs9rtp1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2lDsXlUhYWz-bWKO83Vu8uNIIGP71ggs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504246731400-id6p9k5raokir3or13hu083vvs9rtp1r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
