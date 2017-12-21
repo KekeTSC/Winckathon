@@ -49,22 +49,21 @@ public class ResetPassword extends AppCompatActivity {
                     return;
                 }
 
-                mAuth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(ResetPassword.this,
-                                            R.string.instructions_sent_by_email,
-                                            Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(ResetPassword.this,
-                                            R.string.password_initialization_failed, Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
+                 if (task.isSuccessful()) {
+                    Toast.makeText(ResetPassword.this,
+                     R.string.instructions_sent_by_email,
+                     Toast.LENGTH_LONG).show();
+                 } else {
+                     Toast.makeText(ResetPassword.this,
+                     R.string.password_initialization_failed, Toast.LENGTH_LONG).show();
+                   }
+                }
+            });
             }
         });
-
     }
 }
