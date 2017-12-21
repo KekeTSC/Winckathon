@@ -22,6 +22,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -92,6 +93,9 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
+    TextView mTimer;
+    int count = 8;
+
     //==============================================================================================
     // Activity Methods
     //==============================================================================================
@@ -129,6 +133,32 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         } else {
             requestCameraPermission();
         }
+
+        TextView mTimer = findViewById(R.id.timer);
+
+        final Thread time = new Thread(){
+            @Override
+            public void run(){
+                while (count != 0){
+                    try {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                count--;
+                                mTimer.setText(String .valueOf(count));
+                                if (count == 0){
+                                    startActivity(new Intent(FaceTrackerActivity.this, ResultActivity.class));
+                                }
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        time.start();
     }
 
 
