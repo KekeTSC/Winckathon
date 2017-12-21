@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".UI.CreateAccountActivity" />
         <activity android:name=".UI.SplashActivity" />
-        <activity android:name=".UI.MenuActivity" />
+        <activity android:name=".UI.MainActivity" />
         <activity android:name=".UI.FaceActivity" />
         <activity
             android:name=".UI.WinLinkActivity"

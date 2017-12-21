@@ -16,4 +16,8 @@
     <string name="please_fill_password_confirm">Veuillez confirmer le mot de passe</string>
     <string name="authentication_failed">Echec de l\'authentification</string>
     <string name="welcome">Bienvenu !</string>
+    <string name="tab_text_1">Contact !</string>
+    <string name="tab_text_2">Ajout contact !</string>
+    <string name="title_activity_winlink">WinLink</string>
+    <string name="action_settings">Options</string>
 </resources>

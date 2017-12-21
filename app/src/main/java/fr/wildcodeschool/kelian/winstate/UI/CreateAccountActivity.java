@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import fr.wildcodeschool.kelian.winstate.Controllers.AuthController;
 import fr.wildcodeschool.kelian.winstate.R;
@@ -43,6 +40,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 if (validateForm()) {
                     mEmailText = mEditMail.getText().toString().trim();
                     mPasswordText = mEditPassword.getText().toString().trim();
+
                     mAuthController.createAccount(CreateAccountActivity.this, mEmailText, mPasswordText);
                 }
             }

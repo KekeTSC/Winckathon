@@ -8,12 +8,12 @@ import android.widget.ImageButton;
 
 import fr.wildcodeschool.kelian.winstate.R;
 
-public class MenuActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_main);
 
         ImageButton _gameIcon = (ImageButton) findViewById(R.id.game_icon);
         ImageButton _winIcon = (ImageButton) findViewById(R.id.win_icon);
@@ -21,14 +21,14 @@ public class MenuActivity extends AppCompatActivity {
         _gameIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuActivity.this, FaceActivity.class));
+                startActivity(new Intent(MainActivity.this, FaceActivity.class));
             }
         });
 
         _winIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuActivity.this, WinlinkActivity.class));
+                startActivity(new Intent(MainActivity.this, WinLinkActivity.class));
             }
         });
     }
