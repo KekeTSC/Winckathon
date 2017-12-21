@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.IntentCompat;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,13 +17,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.Observable;
 
 import fr.wildcodeschool.kelian.winstate.Models.UserModel;
 import fr.wildcodeschool.kelian.winstate.R;
+import fr.wildcodeschool.kelian.winstate.UI.ModifUserActivity;
 import fr.wildcodeschool.kelian.winstate.UI.WinLinkActivity;
 
 
-public class AuthController {
+public class AuthController extends Observable {
     private static volatile AuthController sInstance = null;
     private FirebaseAuth mAuth;
     private DatabaseReference mRef;
@@ -30,14 +36,19 @@ public class AuthController {
     private String mUid;
     private FirebaseDatabase mDatabase;
     private UserModel mUserModel;
-
+    private StorageReference mStorageRef;
+    private FirebaseStorage mStorage;
 
     private AuthController(){
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("users");
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        if (isThereCurrentUser()) mUid = mUser.getUid();
+        mStorage = FirebaseStorage.getInstance();
+        if (isThereCurrentUser()) {
+            mUid = mUser.getUid();
+            mStorageRef = mStorage.getReference(getUid());
+        }
     }
 
     public static AuthController getInstance(){
@@ -61,44 +72,38 @@ public class AuthController {
 
     public void callSignIn(final Activity activity, String email, String password, final ProgressDialog progressDialog) {
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            progressDialog.dismiss();
-                            Toast.makeText(activity, R.string.authfailed,
-                                    Toast.LENGTH_SHORT).show();
-                            loadModel();
-                        } else {
-                            progressDialog.dismiss();
-                            mUser = mAuth.getCurrentUser();
-                            mUid = mUser.getUid();
-                            activity.startActivity(new Intent(activity, WinLinkActivity.class));
-                        }
+                .addOnCompleteListener(activity, task -> {
+                    if (!task.isSuccessful()) {
+                        progressDialog.dismiss();
+                        Toast.makeText(activity, R.string.authfailed,
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        progressDialog.dismiss();
+                        setUser(mAuth.getCurrentUser());
+                        loadModel();
+                        Intent intent = new Intent(activity, WinLinkActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK  );
+                        activity.startActivity(intent);
                     }
                 });
     }
     public void createAccount(final Activity activity, String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser newUser = mAuth.getCurrentUser();
-                            setUser(newUser);
-                            String userId = newUser.getUid();
-                            UserModel userModel = new UserModel(userId);
-                            mRef.child(userId).setValue(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    loadModel();
-                                }
-                            });
+                .addOnCompleteListener(activity, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser newUser = mAuth.getCurrentUser();
+                        setUser(newUser);
+                        String userId = newUser.getUid();
+                        UserModel userModel = new UserModel(userId);
+                        mRef.child(userId).setValue(userModel).addOnCompleteListener(task1 ->
+                            loadModel());
                             Toast.makeText(activity, R.string.welcome, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(activity, R.string.authentication_failed,
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                        Intent intent = new Intent(activity, ModifUserActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK  );
+                        activity.startActivity(intent);
+                    } else {
+                        Toast.makeText(activity, R.string.authentication_failed,
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -109,6 +114,7 @@ public class AuthController {
 
     public void setUser(FirebaseUser user) {
         setUid(user.getUid());
+        setStorageRef(mStorage.getReference(getUid()));
         this.mUser = user;
     }
 
@@ -120,10 +126,6 @@ public class AuthController {
         this.mUid = uid;
     }
 
-    public String getUserID() {
-        return mUid;
-    }
-
     public DatabaseReference getRef() {
         return mRef;
     }
@@ -133,12 +135,14 @@ public class AuthController {
         mAuth.signOut();
     }
 
-    private void loadModel() {
-        DatabaseReference userRef = mDatabase.getReference(mUid);
+    public void loadModel() {
+        DatabaseReference userRef = mDatabase.getReference("users/" + mUid);
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 setUserModel(dataSnapshot.getValue(UserModel.class));
+                setChanged();
+                notifyObservers();
             }
 
             @Override
@@ -148,11 +152,25 @@ public class AuthController {
         });
     }
 
+    public StorageReference getStorageRef() {
+        return mStorageRef;
+    }
+
+    private void setStorageRef(StorageReference storageRef) {
+        this.mStorageRef = storageRef;
+    }
+
     public UserModel getUserModel() {
         return mUserModel;
     }
 
-    private void setUserModel(UserModel userModel) {
+    public void setUserModel(UserModel userModel) {
         this.mUserModel = userModel;
+        pushToDatabase();
+    }
+
+    public void pushToDatabase() {
+        DatabaseReference userRef = mDatabase.getReference("users/" + mUid);
+        userRef.setValue(getUserModel());
     }
 }

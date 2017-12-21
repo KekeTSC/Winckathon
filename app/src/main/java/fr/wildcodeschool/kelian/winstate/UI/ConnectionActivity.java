@@ -39,41 +39,32 @@ public class ConnectionActivity extends AppCompatActivity {
         TextView resetPassword = findViewById(R.id.tv_login_reset_password);
 
 
-        buttonSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String getEmail = mEmail.getText().toString().trim();
-                String getPassword = mPassword.getText().toString().trim();
-                if (getEmail.isEmpty() || getPassword.isEmpty()) {
-                    Toast.makeText(ConnectionActivity.this, R.string.empties_fields, Toast.LENGTH_SHORT).show();
-                } else {
-                    mProgressDialog = new ProgressDialog(ConnectionActivity.this);
-                    mProgressDialog.setIndeterminate(true);
-                    mProgressDialog.setCancelable(false);
-                    mProgressDialog.setMessage(getString(R.string.registartion));
-                    mProgressDialog.show();
-                    mAuthController.callSignIn(ConnectionActivity.this, getEmail, getPassword, mProgressDialog);
-                }
+        buttonSignIn.setOnClickListener(v -> {
+            String getEmail = mEmail.getText().toString().trim();
+            String getPassword = mPassword.getText().toString().trim();
+            if (getEmail.isEmpty() || getPassword.isEmpty()) {
+                Toast.makeText(ConnectionActivity.this, R.string.empties_fields, Toast.LENGTH_SHORT).show();
+            } else {
+                mProgressDialog = new ProgressDialog(ConnectionActivity.this);
+                mProgressDialog.setIndeterminate(true);
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.setMessage(getString(R.string.registartion));
+                mProgressDialog.show();
+                mAuthController.callSignIn(ConnectionActivity.this, getEmail, getPassword, mProgressDialog);
             }
         });
 
-        resetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentLogin = new Intent(ConnectionActivity.this, ResetPassword.class);
-                startActivity(intentLogin);
-            }
+        resetPassword.setOnClickListener(v -> {
+            Intent intentLogin = new Intent(ConnectionActivity.this, ResetPassword.class);
+            startActivity(intentLogin);
         });
 
 
-        buttonCreateAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String getEmail = mEmail.getText().toString().trim();
-                Intent intent = new Intent(ConnectionActivity.this, CreateAccountActivity.class);
-                intent.putExtra("email", getEmail);
-                startActivity(intent);
-            }
+        buttonCreateAccount.setOnClickListener(v -> {
+            String getEmail = mEmail.getText().toString().trim();
+            Intent intent = new Intent(ConnectionActivity.this, CreateAccountActivity.class);
+            intent.putExtra("email", getEmail);
+            startActivity(intent);
         });
     }
 

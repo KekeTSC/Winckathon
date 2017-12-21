@@ -9,7 +9,7 @@ public class UserModel implements Parcelable{
     private String pseudonyme = "";
     private String photoUrl = "";
     private String uid;
-    private String male = "";
+    private String gender = "";
 
     public UserModel() {
     }
@@ -50,12 +50,12 @@ public class UserModel implements Parcelable{
         this.uid = uid;
     }
 
-    public String isMale() {
-        return male;
+    public String getGender() {
+        return gender;
     }
 
-    public void setMale(String male) {
-        this.male = male;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class UserModel implements Parcelable{
                 ", pseudonyme='" + pseudonyme + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", uid='" + uid + '\'' +
-                ", male='" + male + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
 
@@ -80,7 +80,7 @@ public class UserModel implements Parcelable{
         parcel.writeString(pseudonyme);
         parcel.writeString(photoUrl);
         parcel.writeString(uid);
-        parcel.writeString(male);
+        parcel.writeString(gender);
     }
 
     private UserModel(Parcel in) {
@@ -88,7 +88,7 @@ public class UserModel implements Parcelable{
         pseudonyme = in.readString();
         photoUrl = in.readString();
         uid = in.readString();
-        male = in.readString();
+        gender = in.readString();
     }
 
     public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
