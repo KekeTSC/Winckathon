@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">WinState</string>
+    <string name="skip">SKIP</string>
+
+    <string name="slide_1_title">Pensez SteeryFit</string>
+    <string name="slide_1_desc">Parce que nous désirons vous aider à partager votre passion</string>
+
+    <string name="slide_2_title">Dormez SteeryFit</string>
+    <string name="slide_2_desc">Parce que nous sommes soucieux que vous puissiez la pratiquer en toute sécurité</string>
+
+    <string name="slide_3_title">Vivez SteeryFit</string>
+    <string name="slide_3_desc">Parce que nous souhaitions redonner au sport ses vertus premières de socialisation de plaisir de rencontrer d\'épanouissement personnel et professionnel</string>
+
 </resources>
