@@ -9,18 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".UI.ConnectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UI.CreateAccountActivity" />
         <activity android:name=".UI.SplashActivity" />
         <activity android:name=".UI.MenuActivity" />
         <activity android:name=".UI.FaceActivity" />
         <activity
-            android:name=".UI.WinlinkActivity"
+            android:name=".UI.WinLinkActivity"
             android:label="@string/title_activity_winlink"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
