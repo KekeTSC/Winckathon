@@ -23,7 +23,7 @@
         android:layout_height="300dp" />
   </fr.wildcodeschool.kelian.winstate.Controllers.CameraSourcePreview>
 
-  <TextView
+g  <TextView
       android:id="@+id/resusu"
       android:textColor="@color/black"
       android:layout_width="wrap_content"
