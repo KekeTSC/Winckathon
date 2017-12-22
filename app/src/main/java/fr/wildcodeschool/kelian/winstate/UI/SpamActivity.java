@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,14 +20,15 @@ public class SpamActivity extends AppCompatActivity {
     private int mCounter;
     private static int mTime = 4000;
     private long timeElapsed;
+    private Animation anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spam);
         mBtCounter = findViewById(R.id.bt_counter);
         mTvCounter = findViewById(R.id.counter);
-         mCounter = 0;
-
+        mCounter = 0;
+        anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
 
         mBtCounter.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -39,6 +42,7 @@ public class SpamActivity extends AppCompatActivity {
                         if (timeElapsed >= 1){
                             mCounter++;
                             String counttt = String.valueOf(mCounter);
+                            mTvCounter.startAnimation(anim);
                             mTvCounter.setText(counttt);
                         }
                         break;
