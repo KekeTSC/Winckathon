@@ -5,6 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="#ffdc00"
+    android:orientation="vertical"
+    tools:context="fr.wildcodeschool.kelian.winstate.UI.SpamActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#1e3278"
+        android:text="Cliquez un maximum de fois pour gagner le jeu !"/>
+    <Button
+        android:id="@+id/bt_counter"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="CLIQUEZ ici " />
+    <TextView
+        android:id="@+id/counter"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="#1e3278"
     tools:context="fr.wildcodeschool.kelian.winstate.UI.SpamActivity">
 
     <Button

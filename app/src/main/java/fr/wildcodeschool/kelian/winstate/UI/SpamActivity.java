@@ -1,16 +1,23 @@
 package fr.wildcodeschool.kelian.winstate.UI;
 
+
+import android.content.Intent;
+import android.os.Handler;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,21 +38,23 @@ public class SpamActivity extends AppCompatActivity {
     private TextView mTvCounter;
     private int mCounter;
     private static int mTime = 4000;
-    private long timeElapsed;
+
+    private long mTimeElapsed;
+    private Animation mAnim;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String uid;
     StatsModel myStats;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spam);
         mBtCounter = findViewById(R.id.bt_counter);
         mTvCounter = findViewById(R.id.counter);
-         mCounter = 0;
+        mCounter = 0;
+        mAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
+        mCounter = 0;
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -109,7 +118,5 @@ public class SpamActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 }

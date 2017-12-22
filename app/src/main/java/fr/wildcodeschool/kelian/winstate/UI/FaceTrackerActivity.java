@@ -31,6 +31,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -99,6 +101,9 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     TextView mTimer;
     int count = 8;
 
+    private Animation mAnim;
+
+
     //==============================================================================================
     // Activity Methods
     //==============================================================================================
@@ -121,7 +126,41 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
             createCameraSource();
-            Button bt = (Button) findViewById(R.id.btt) ;
+        } else {
+            requestCameraPermission();
+        }
+
+        TextView mTimer = findViewById(R.id.timer);
+        mAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
+
+        final Thread time = new Thread(){
+            @Override
+            public void run(){
+                while (count != 0){
+                    try {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                count--;
+                                mTimer.setText(String .valueOf(count));
+                                mTimer.startAnimation(mAnim);
+                                if (count == 0){
+                                    Intent i = new Intent(FaceTrackerActivity.this, ResultActivity.class);
+                                    i.putExtra("x",st);
+                                    i.putExtra("y",ts);
+                                    startActivity(i);
+                                }
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        time.start();
+            /*Button bt = (Button) findViewById(R.id.btt) ;
             final TextView resusu = (TextView) findViewById(R.id.resusu);
             final TextView resusu1 = (TextView) findViewById(R.id.resusu1);
             bt.setOnClickListener(view -> {
@@ -136,7 +175,8 @@ public final class FaceTrackerActivity extends AppCompatActivity {
 
         } else {
             requestCameraPermission();
-        }
+        }*/
+
     }
 
 
