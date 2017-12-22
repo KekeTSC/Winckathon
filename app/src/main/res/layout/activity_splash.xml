@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context="fr.wildcodeschool.kelian.winstate.UI.SplashActivity">
 
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/common_full_open_on_phone" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/splash_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        android:src="@drawable/common_full_open_on_phone" />
+
 </android.support.constraint.ConstraintLayout>

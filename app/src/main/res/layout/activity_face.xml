@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/topLayout"
+    android:orientation="vertical"
+    android:background="#ffdc00"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="horizontal">
+
+  <fr.wildcodeschool.kelian.winstate.Controllers.CameraSourcePreview
+      android:id="@+id/preview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <fr.wildcodeschool.kelian.winstate.Controllers.GraphicOverlay
+        android:id="@+id/faceOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+  </fr.wildcodeschool.kelian.winstate.Controllers.CameraSourcePreview>
+</LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+
+  <TextView
+      android:id="@+id/timer"
+      android:paddingTop="8dp"
+      android:layout_width="wrap_content"
+      android:layout_gravity="center"
+      android:textSize="50dp"
+      android:textStyle="bold"
+      android:textColor="#1e3278"
+      android:layout_height="wrap_content" />
+  <TextView
+      android:id="@+id/resusu"
+      android:textColor="@color/black"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+  <TextView
+      android:id="@+id/resusu1"
+      android:textColor="@color/black"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+  </LinearLayout>
+</LinearLayout>

@@ -16,20 +16,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ImageButton _gameIcon = (ImageButton) findViewById(R.id.game_icon);
-        ImageButton _winIcon = (ImageButton) findViewById(R.id.win_icon);
 
-//        _gameIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, FaceActivity.class));
-//            }
-//        });
-
-        _winIcon.setOnClickListener(new View.OnClickListener() {
+        _gameIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, WinLinkActivity.class));
-            }
-        });
+                startActivity(new Intent(MainActivity.this, SalonActivity.class));
+           }
+       });
+
     }
 }
