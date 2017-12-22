@@ -114,18 +114,6 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
             createCameraSource();
-            Button bt = (Button) findViewById(R.id.btt) ;
-            final TextView resusu = (TextView) findViewById(R.id.resusu);
-            final TextView resusu1 = (TextView) findViewById(R.id.resusu1);
-            bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    resusu.setText(st);
-                    resusu1.setText(ts);
-                }
-            });
-
-
         } else {
             requestCameraPermission();
         }
