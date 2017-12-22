@@ -12,16 +12,23 @@
     <string name="send_email">Email envoyé</string>
     <string name="failure">Echec de la suppression</string>
 
+    //Edito d'accueille
     <string name="skip">SKIP</string>
 
-    <string name="slide_1_title">Pensez SteeryFit</string>
-    <string name="slide_1_desc">Parce que nous désirons vous aider à partager votre passion</string>
+    <string name="slide_1_title">Partagez</string>
+    <string name="slide_1_desc">Le bonheur appartient à qui fait des heureux, décuplez le vôtre en le partageant.</string>
 
-    <string name="slide_2_title">Dormez SteeryFit</string>
-    <string name="slide_2_desc">Parce que nous sommes soucieux que vous puissiez la pratiquer en toute sécurité</string>
+    <string name="slide_2_title">Participez</string>
+    <string name="slide_2_desc">Proposez, votez, contaminez, ajoutez votre pierre à l\'édifice via Winlab et participer au mini jeux pierre feuille ciseau.</string>
 
-    <string name="slide_3_title">Vivez SteeryFit</string>
-    <string name="slide_3_desc">Parce que nous souhaitions redonner au sport ses vertus premières de socialisation de plaisir de rencontrer d\'épanouissement personnel et professionnel</string>
+    <string name="slide_3_title">Pierre</string>
+    <string name="slide_3_desc">Pour jouer Pierre garde les deux yeux ouverts.</string>
+
+    <string name="slide_4_title">Feuille</string>
+    <string name="slide_4_desc">Pour jouer Feuille garde les deux yeux fermer.</string>
+
+    <string name="slide_5_title">ciseau</string>
+    <string name="slide_5_desc">Pour jouer Ciseau ferme un oeil</string>
 
 
     <string name="authfailed">L\'authentification à echoué.</string>

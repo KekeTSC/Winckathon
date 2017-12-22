@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "504246731400-k8n4lvgstg39349tnhcdhvjs60n0f30n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.wildcodeschool.kelian.winstate",
+            "certificate_hash": "98d661ce289f1045c6f3aa7c6515d500113ba2a9"
+          }
+        },
+        {
           "client_id": "504246731400-pda4l8jp4miv5drdm1tli7ubfcqrnlv6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
