@@ -172,4 +172,5 @@ public class AuthController extends Observable {
         DatabaseReference userRef = mDatabase.getReference("users/" + mUid);
         userRef.setValue(getUserModel());
     }
+
 }

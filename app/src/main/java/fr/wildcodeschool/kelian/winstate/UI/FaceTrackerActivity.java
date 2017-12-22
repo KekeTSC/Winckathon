@@ -25,6 +25,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -159,6 +160,23 @@ public final class FaceTrackerActivity extends AppCompatActivity {
             }
         };
         time.start();
+            /*Button bt = (Button) findViewById(R.id.btt) ;
+            final TextView resusu = (TextView) findViewById(R.id.resusu);
+            final TextView resusu1 = (TextView) findViewById(R.id.resusu1);
+            bt.setOnClickListener(view -> {
+                resusu.setText(st);
+                resusu1.setText(ts);
+                Intent i = new Intent(FaceTrackerActivity.this, ResultActivity.class);
+                i.putExtra("x",st);
+                i.putExtra("y",ts);
+                startActivity(i);
+            });
+
+
+        } else {
+            requestCameraPermission();
+        }*/
+
     }
 
 

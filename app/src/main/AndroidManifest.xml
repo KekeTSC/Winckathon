@@ -47,13 +47,26 @@
         <activity
             android:name=".UI.FaceTrackerActivity"
             android:noHistory="true"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UI.SalonActivity" />
+        <activity android:name=".UI.PhotoActivity" />
+        <activity android:name=".UI.SpamActivity" />
+        <activity android:name=".UI.ResultActivity" />
+        <activity android:name=".UI.HammerActivity">
+
+        </activity>
+        <activity android:name=".UI.WaitingForAdvResult" />
+        <activity android:name=".UI.ScoreActivity">
+
+        </activity>
+        <activity android:name=".UI.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".UI.SalonActivity" />
         <activity android:name=".UI.PhotoActivity" />
         <activity android:name=".UI.MainActivity"
@@ -61,6 +74,7 @@
         <activity android:name=".UI.SpamActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".UI.ResultActivity"></activity>
+
     </application>
 
 </manifest>
