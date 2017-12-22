@@ -19,8 +19,8 @@ public class SpamActivity extends AppCompatActivity {
     private TextView mTvCounter;
     private int mCounter;
     private static int mTime = 4000;
-    private long timeElapsed;
-    private Animation anim;
+    private long mTimeElapsed;
+    private Animation mAnim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,21 +28,21 @@ public class SpamActivity extends AppCompatActivity {
         mBtCounter = findViewById(R.id.bt_counter);
         mTvCounter = findViewById(R.id.counter);
         mCounter = 0;
-        anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
+        mAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
 
         mBtCounter.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        timeElapsed = motionEvent.getDownTime();
+                        mTimeElapsed = motionEvent.getDownTime();
                         break;
                     case MotionEvent.ACTION_UP:
-                        timeElapsed = motionEvent.getEventTime() - timeElapsed;
-                        if (timeElapsed >= 1){
+                        mTimeElapsed = motionEvent.getEventTime() - mTimeElapsed;
+                        if (mTimeElapsed >= 1){
                             mCounter++;
                             String counttt = String.valueOf(mCounter);
-                            mTvCounter.startAnimation(anim);
+                            mTvCounter.startAnimation(mAnim);
                             mTvCounter.setText(counttt);
                         }
                         break;
