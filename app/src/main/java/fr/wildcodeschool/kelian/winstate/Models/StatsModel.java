@@ -2,83 +2,29 @@ package fr.wildcodeschool.kelian.winstate.Models;
 
 
 public class StatsModel {
-    private String conditionOfOther = "";
-    private boolean response;
-    private String lastResult = ""; //3possibilité
-    private int happiness;
-    private boolean isBetterThanOther;
-    private String photoUrlResponse;
-    private String photoUrlGame;
+    private String result = ""; //3possibilité
     private int score;
+    private int clickCounter;
+    private double deadTaupeClick;
+    private boolean isScoreSet;
 
     public StatsModel() {
     }
 
-    public StatsModel(String conditionOfOther, boolean response, String lastResult, boolean asWon, int happiness, boolean isBetterThanOther, String photoUrlResponse, String photoUrlGame, int score) {
-        this.conditionOfOther = conditionOfOther;
-        this.response = response;
-        this.lastResult = lastResult;
-        this.happiness = happiness;
-        this.isBetterThanOther = isBetterThanOther;
-        this.photoUrlResponse = photoUrlResponse;
-        this.photoUrlGame = photoUrlGame;
+    public StatsModel(String result, int score, int clickCounter, double deadTaupeClick, boolean isScoreSet) {
+        this.result = result;
         this.score = score;
+        this.clickCounter = clickCounter;
+        this.deadTaupeClick = deadTaupeClick;
+        this.isScoreSet = isScoreSet;
     }
 
-    public String getConditionOfOther() {
-        return conditionOfOther;
+    public String getResult() {
+        return result;
     }
 
-    public void setConditionOfOther(String conditionOfOther) {
-        this.conditionOfOther = conditionOfOther;
-    }
-
-    public boolean isResponse() {
-        return response;
-    }
-
-    public void setResponse(boolean response) {
-        this.response = response;
-    }
-
-    public String getLastResult() {
-        return lastResult;
-    }
-
-    public void setLastResult(String lastResult) {
-        this.lastResult = lastResult;
-    }
-
-    public int getHappiness() {
-        return happiness;
-    }
-
-    public void setHappiness(int happiness) {
-        this.happiness = happiness;
-    }
-
-    public boolean isBetterThanOther() {
-        return isBetterThanOther;
-    }
-
-    public void setBetterThanOther(boolean betterThanOther) {
-        isBetterThanOther = betterThanOther;
-    }
-
-    public String getPhotoUrlResponse() {
-        return photoUrlResponse;
-    }
-
-    public void setPhotoUrlResponse(String photoUrlResponse) {
-        this.photoUrlResponse = photoUrlResponse;
-    }
-
-    public String getPhotoUrlGame() {
-        return photoUrlGame;
-    }
-
-    public void setPhotoUrlGame(String photoUrlGame) {
-        this.photoUrlGame = photoUrlGame;
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public int getScore() {
@@ -88,4 +34,30 @@ public class StatsModel {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public int getClickCounter() {
+        return clickCounter;
+    }
+
+    public void setClickCounter(int clickCounter) {
+        this.clickCounter = clickCounter;
+    }
+
+    public double getDeadTaupeClick() {
+        return deadTaupeClick;
+    }
+
+    public void setDeadTaupeClick(double deadTaupeClick) {
+        this.deadTaupeClick = deadTaupeClick;
+    }
+
+    public boolean isScoreSet() {
+        return isScoreSet;
+    }
+
+    public void setScoreSet(boolean scoreSet) {
+        isScoreSet = scoreSet;
+    }
 }
+
+

@@ -25,6 +25,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -123,47 +124,19 @@ public final class FaceTrackerActivity extends AppCompatActivity {
             Button bt = (Button) findViewById(R.id.btt) ;
             final TextView resusu = (TextView) findViewById(R.id.resusu);
             final TextView resusu1 = (TextView) findViewById(R.id.resusu1);
-            bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    resusu.setText(st);
-                    resusu1.setText(ts);
-                }
+            bt.setOnClickListener(view -> {
+                resusu.setText(st);
+                resusu1.setText(ts);
+                Intent i = new Intent(FaceTrackerActivity.this, ResultActivity.class);
+                i.putExtra("x",st);
+                i.putExtra("y",ts);
+                startActivity(i);
             });
 
 
         } else {
             requestCameraPermission();
         }
-
-        TextView mTimer = findViewById(R.id.timer);
-
-        final Thread time = new Thread(){
-            @Override
-            public void run(){
-                while (count != 0){
-                    try {
-                        Thread.sleep(1000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                count--;
-                                mTimer.setText(String .valueOf(count));
-                                if (count == 0){
-                                    Intent i = new Intent(FaceTrackerActivity.this, ResultActivity.class);
-                                    i.putExtra("x",st);
-                                    i.putExtra("y",ts);
-                                    startActivity(i);
-                                }
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        time.start();
     }
 
 
