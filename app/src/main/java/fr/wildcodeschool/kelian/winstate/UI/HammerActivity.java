@@ -31,7 +31,8 @@ import java.util.TimerTask;
 import fr.wildcodeschool.kelian.winstate.Models.StatsModel;
 import fr.wildcodeschool.kelian.winstate.R;
 
-public class HammerActivity extends AppCompatActivity implements Button.OnClickListener{
+public class HammerActivity extends AppCompatActivity implements Button.OnClickListener
+        ,ValueEventListener{
 
     private TextView mChrono;
     private int mCounter;
@@ -45,6 +46,8 @@ public class HammerActivity extends AppCompatActivity implements Button.OnClickL
     private FirebaseUser mUser;
     private String uid;
     StatsModel myStats;
+
+    ProgressDialog mProgressDialog;
 
     private FirebaseDatabase mFire;
     private DatabaseReference mRef;
@@ -71,7 +74,8 @@ public class HammerActivity extends AppCompatActivity implements Button.OnClickL
         b9 = findViewById(R.id.button9);
 
 
-        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+
+        mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
         //TODO provisoire changements en "Chargement"
@@ -80,28 +84,7 @@ public class HammerActivity extends AppCompatActivity implements Button.OnClickL
         mProgressDialog.show();
 
         mRef = FirebaseDatabase.getInstance().getReference("game/1");
-        mRef.child(uid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mProgressDialog.cancel();
-                myStats = dataSnapshot.getValue(StatsModel.class);
-                b5.setVisibility(View.VISIBLE);
-                b1.setOnClickListener(HammerActivity.this);
-                b2.setOnClickListener(HammerActivity.this);
-                b3.setOnClickListener(HammerActivity.this);
-                b4.setOnClickListener(HammerActivity.this);
-                b5.setOnClickListener(HammerActivity.this);
-                b6.setOnClickListener(HammerActivity.this);
-                b7.setOnClickListener(HammerActivity.this);
-                b8.setOnClickListener(HammerActivity.this);
-                b9.setOnClickListener(HammerActivity.this);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        mRef.child(uid).addValueEventListener(this);
     }
 
     @Override
@@ -153,10 +136,16 @@ public class HammerActivity extends AppCompatActivity implements Button.OnClickL
                     if (clickCount == 9){
                         Toast.makeText(HammerActivity.this, "Bravo", Toast.LENGTH_SHORT).show();
                         t.cancel();
+                        mRef.child(uid).removeEventListener(HammerActivity.this);
                         myStats.setDeadTaupeClick(Double.parseDouble(mChrono.getText().toString()));
-                        Intent i = new Intent(HammerActivity.this, WaitingForAdvResult.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(i);
+                        mRef.child(uid).setValue(myStats).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Intent i = new Intent(HammerActivity.this, WaitingForAdvResult.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        });
                     } else {
                         long nowTime = Calendar.getInstance().getTimeInMillis();
                         mChrono.setText(String .valueOf(Math.floor(nowTime - firstTime)/1000));
@@ -165,5 +154,26 @@ public class HammerActivity extends AppCompatActivity implements Button.OnClickL
             }
         }, 0, 100);
         clickCount++;
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        mProgressDialog.cancel();
+        myStats = dataSnapshot.getValue(StatsModel.class);
+        b5.setVisibility(View.VISIBLE);
+        b1.setOnClickListener(HammerActivity.this);
+        b2.setOnClickListener(HammerActivity.this);
+        b3.setOnClickListener(HammerActivity.this);
+        b4.setOnClickListener(HammerActivity.this);
+        b5.setOnClickListener(HammerActivity.this);
+        b6.setOnClickListener(HammerActivity.this);
+        b7.setOnClickListener(HammerActivity.this);
+        b8.setOnClickListener(HammerActivity.this);
+        b9.setOnClickListener(HammerActivity.this);
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
     }
 }

@@ -29,7 +29,7 @@ import fr.wildcodeschool.kelian.winstate.Controllers.AuthController;
 import fr.wildcodeschool.kelian.winstate.Models.StatsModel;
 import fr.wildcodeschool.kelian.winstate.R;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity implements ValueEventListener{
 
     private FirebaseDatabase mFire;
     private DatabaseReference mRef;
@@ -44,6 +44,7 @@ public class ResultActivity extends AppCompatActivity {
     private FirebaseUser mUser;
     private String uid;
     StatsModel myStats;
+    ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class ResultActivity extends AppCompatActivity {
         TextView resP2 = findViewById(R.id.resp2);
         TextView finalRes = findViewById(R.id.finalRes);
 
-        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
         //TODO provisoire changements en "Chargement"
@@ -67,46 +68,52 @@ public class ResultActivity extends AppCompatActivity {
         mProgressDialog.show();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("game/1");
-        ref.child(uid).addValueEventListener(new ValueEventListener() {
+        ref.child(uid).addValueEventListener(this);
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        mProgressDialog.cancel();
+        myStats = dataSnapshot.getValue(StatsModel.class);
+        Intent check = getIntent();
+            Double xValue;
+            Double yValue;
+            String checkX = check.getStringExtra("x");
+            String checkY = check.getStringExtra("y");
+
+            if (checkX != null && checkY != null) {
+                xValue = Double.parseDouble(checkX) * 100;
+                yValue = Double.parseDouble(checkY) * 100;
+        } else {
+            xValue = 70.0;
+            yValue = 70.0;
+        }
+
+        mFire = FirebaseDatabase.getInstance();
+        mRef = mFire.getReference("game/1");
+
+        if (xValue >= 50.0 && yValue >= 50.0){
+            mJanken = "Pierre";
+        }else if (xValue <= 50.0 && yValue <= 50.0){
+            mJanken = "Papier";
+        }else if ((xValue >= 50.0 && yValue <= 50.0) || (xValue <= 50.0 && yValue >= 50.0)){
+            mJanken = "Ciseau";
+        }
+        myStats.setResult(mJanken);
+        mRef.child(uid).removeEventListener(this);
+        mRef.child(uid).setValue(myStats).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mProgressDialog.cancel();
-                myStats = dataSnapshot.getValue(StatsModel.class);
-                Intent check = getIntent();
-                String checkX = check.getStringExtra("x");
-                String checkY = check.getStringExtra("y");
-
-                Double xValue = Double.parseDouble(checkX) * 100;
-                Double yValue = Double.parseDouble(checkY) * 100;
-
-                mFire = FirebaseDatabase.getInstance();
-                mRef = mFire.getReference("game/1");
-
-                if (xValue >= 50.0 && yValue >= 50.0){
-                    mJanken = "Pierre";
-                }else if (xValue <= 50.0 && yValue <= 50.0){
-                    mJanken = "Papier";
-                }else if ((xValue >= 50.0 && yValue <= 50.0) || (xValue <= 50.0 && yValue >= 50.0)){
-                    mJanken = "Ciseau";
-                }
-                res.setText(mJanken);
-                myStats.setResult(mJanken);
-                mRef.child(uid).setValue(myStats).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Intent intent = new Intent(ResultActivity.this, HammerActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                    }
-                });
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent intent = new Intent(ResultActivity.this, HammerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
     }
 }
 

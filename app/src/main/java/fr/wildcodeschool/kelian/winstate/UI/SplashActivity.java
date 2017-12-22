@@ -38,7 +38,6 @@ public class SplashActivity extends AppCompatActivity implements Observer{
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
         mProgressDialog.setTitle("Chargement en cours");
-        mProgressDialog.setMessage("Votre café est en préparation");
         GifImageView splashGif = findViewById(R.id.splash_animation);
         new Handler().postDelayed(() -> {
             if (!mIsAnimationFinished) {

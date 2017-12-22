@@ -32,7 +32,7 @@ import fr.wildcodeschool.kelian.winstate.Models.StatsModel;
 import fr.wildcodeschool.kelian.winstate.Models.UserModel;
 import fr.wildcodeschool.kelian.winstate.R;
 
-public class SpamActivity extends AppCompatActivity {
+public class SpamActivity extends AppCompatActivity implements ValueEventListener{
 
     private Button mBtCounter;
     private TextView mTvCounter;
@@ -41,11 +41,21 @@ public class SpamActivity extends AppCompatActivity {
 
     private long mTimeElapsed;
     private Animation mAnim;
+    DatabaseReference ref;
+    ProgressDialog mProgressDialog;
+
+
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String uid;
     StatsModel myStats;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +70,7 @@ public class SpamActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         uid = mUser.getUid();
 
-        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
         //TODO provisoire changements en "Chargement"
@@ -68,55 +78,59 @@ public class SpamActivity extends AppCompatActivity {
         mProgressDialog.setMessage("Votre partie est en chargement");
         mProgressDialog.show();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("game/1").child(uid);
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mProgressDialog.cancel();
-                myStats = dataSnapshot.getValue(StatsModel.class);
+        ref = FirebaseDatabase.getInstance().getReference("game/1");
+        ref.child(uid).addValueEventListener(this);
 
-                mBtCounter.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View view, MotionEvent motionEvent) {
-                        switch (motionEvent.getAction()) {
-                            case MotionEvent.ACTION_DOWN:
-                                timeElapsed = motionEvent.getDownTime();
-                                break;
-                            case MotionEvent.ACTION_UP:
-                                timeElapsed = motionEvent.getEventTime() - timeElapsed;
-                                if (timeElapsed >= 1){
-                                    mCounter++;
-                                    String counttt = String.valueOf(mCounter);
-                                    mTvCounter.setText(counttt);
-                                }
-                                break;
-                        }
-                        return true;
-                    }
-                });
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        myStats.setClickCounter(mCounter);
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("game/1");
-                        ref.child(uid).setValue(myStats).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Intent i = new Intent(SpamActivity.this,FaceTrackerActivity.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(i);
+
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        mProgressDialog.cancel();
+        myStats = dataSnapshot.getValue(StatsModel.class);
+
+        mBtCounter.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                long timeElapsed = 0;
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        timeElapsed = motionEvent.getDownTime();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        timeElapsed = motionEvent.getEventTime() - timeElapsed;
+                        if (timeElapsed >= 1){
+                            if (mCounter <= 0) {
+                                Handler handler = new Handler();
+                                handler.postDelayed(() -> {
+                                    myStats.setClickCounter(mCounter);
+                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("game/1");
+                                    ref.child(uid).removeEventListener(SpamActivity.this);
+                                    ref.child(uid).setValue(myStats).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Intent i = new Intent(SpamActivity.this,FaceTrackerActivity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(i);
+                                        }
+                                    });
+
+                                },mTime);
                             }
-                        });
-
-                    }
-                },mTime);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+                            mCounter++;
+                            String counttt = String.valueOf(mCounter);
+                            mTvCounter.setText(counttt);
+                        }
+                        break;
+                }
+                return true;
             }
         });
+
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
     }
 }
