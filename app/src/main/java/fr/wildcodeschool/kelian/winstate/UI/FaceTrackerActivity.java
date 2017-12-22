@@ -30,6 +30,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -98,6 +100,9 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     TextView mTimer;
     int count = 8;
 
+    private Animation mAnim;
+
+
     //==============================================================================================
     // Activity Methods
     //==============================================================================================
@@ -125,6 +130,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         }
 
         TextView mTimer = findViewById(R.id.timer);
+        mAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
 
         final Thread time = new Thread(){
             @Override
@@ -137,6 +143,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
                             public void run() {
                                 count--;
                                 mTimer.setText(String .valueOf(count));
+                                mTimer.startAnimation(mAnim);
                                 if (count == 0){
                                     Intent i = new Intent(FaceTrackerActivity.this, ResultActivity.class);
                                     i.putExtra("x",st);

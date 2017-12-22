@@ -49,22 +49,22 @@ public class ResultActivity extends AppCompatActivity {
         Double xValue = Double.valueOf(checkX) * 100;
         Double yValue = Double.valueOf(checkY) * 100;
 
-        mFire = FirebaseDatabase.getInstance();
+       /* mFire = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         mRef = mFire.getReference("games/1/");
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        String idUser = currentUser.getUid();
+        String idUser = currentUser.getUid();*/
 
-        if (xValue >= 70.0 && yValue >= 70.0){
+        if (xValue >= 50.0 && yValue >= 50.0){
             mJanken = "Pierre";
-        }else if (xValue <= 35.0 && yValue <= 35.0){
+        }else if (xValue <= 50.0 && yValue <= 50.0){
             mJanken = "Papier";
-        }else if ((xValue >= 70.0 && yValue <= 45.0) || (xValue <= 45.0 && yValue >= 70.0)){
+        }else if ((xValue >= 50.0 && yValue <= 50.0) || (xValue <= 50.0 && yValue >= 50.0)){
             mJanken = "Ciseau";
         }
         res.setText(mJanken);
 
-        mRef.child(idUser).child(mResultP2.getLastResult()).setValue(mJanken);
+     /*   mRef.child(idUser).child(mResultP2.getLastResult()).setValue(mJanken);
 
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -139,6 +139,6 @@ public class ResultActivity extends AppCompatActivity {
                 Intent j = new Intent(ResultActivity.this,FaceTrackerActivity.class);
                 startActivity(j);
             }
-        },DURATION);
+        },DURATION);*/
     }
 }

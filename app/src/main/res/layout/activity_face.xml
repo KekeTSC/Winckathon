@@ -5,23 +5,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/topLayout"
     android:orientation="vertical"
+    android:background="#ffdc00"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="horizontal">
+
   <fr.wildcodeschool.kelian.winstate.Controllers.CameraSourcePreview
       android:id="@+id/preview"
       android:layout_width="match_parent"
-      android:paddingLeft="0dp"
-      android:layout_height="0dp"
-      android:layout_weight="1">
+      android:layout_height="match_parent">
 
     <fr.wildcodeschool.kelian.winstate.Controllers.GraphicOverlay
         android:id="@+id/faceOverlay"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp" />
   </fr.wildcodeschool.kelian.winstate.Controllers.CameraSourcePreview>
+</LinearLayout>
 
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+
+  <TextView
+      android:id="@+id/timer"
+      android:paddingTop="8dp"
+      android:layout_width="wrap_content"
+      android:layout_gravity="center"
+      android:textSize="50dp"
+      android:textStyle="bold"
+      android:textColor="#1e3278"
+      android:layout_height="wrap_content" />
   <TextView
       android:id="@+id/resusu"
       android:textColor="@color/black"
@@ -34,34 +55,5 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       />
-  <Button
-      android:id="@+id/btt"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="goooo"/>
-
-  <android.support.constraint.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/timer"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-  </android.support.constraint.ConstraintLayout>
-
-      android:textSize="20dp"
-      android:textStyle="bold" />
-
+  </LinearLayout>
 </LinearLayout>
