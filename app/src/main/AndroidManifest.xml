@@ -55,7 +55,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.SalonActivity" />
-        <activity android:name=".UI.JankenActivity" />
         <activity android:name=".UI.PhotoActivity" />
         <activity android:name=".UI.SpamActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
