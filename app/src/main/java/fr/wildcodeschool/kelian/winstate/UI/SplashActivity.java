@@ -12,12 +12,14 @@ import java.util.Observer;
 
 import fr.wildcodeschool.kelian.winstate.Controllers.AuthController;
 import fr.wildcodeschool.kelian.winstate.Controllers.DataController;
+import fr.wildcodeschool.kelian.winstate.Controllers.GameController;
 import fr.wildcodeschool.kelian.winstate.R;
 import pl.droidsonroids.gif.GifImageView;
 
 public class SplashActivity extends AppCompatActivity implements Observer{
     private DataController mDataController;
     private AuthController mAuthController;
+    private GameController mGameController;
 
     private int SPLASH_TIMEOUT = 3000;
 
@@ -29,6 +31,7 @@ public class SplashActivity extends AppCompatActivity implements Observer{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        mGameController = GameController.getInstance();
         mDataController = DataController.getInstance();
         mDataController.addObserver(this);
         mAuthController = AuthController.getInstance();
@@ -45,7 +48,7 @@ public class SplashActivity extends AppCompatActivity implements Observer{
                 mIsAnimationFinished = true;
                 if (mIsDataLoaded) {
                     if (mAuthController.isThereCurrentUser()) {
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     } else {
                         startActivity(new Intent(SplashActivity.this, EditoActivity.class));
                     }
@@ -60,7 +63,7 @@ public class SplashActivity extends AppCompatActivity implements Observer{
             mIsAnimationFinished = true;
             if (mIsDataLoaded) {
                 if (mAuthController.isThereCurrentUser()) {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, EditoActivity.class));
                 }
@@ -79,7 +82,7 @@ public class SplashActivity extends AppCompatActivity implements Observer{
             if (mIsAnimationFinished) {
                 mProgressDialog.dismiss();
                 if (mAuthController.isThereCurrentUser()) {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, EditoActivity.class));
                 }

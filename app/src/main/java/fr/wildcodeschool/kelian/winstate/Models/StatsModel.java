@@ -2,43 +2,21 @@ package fr.wildcodeschool.kelian.winstate.Models;
 
 
 public class StatsModel {
-    private String conditionOfOther = "";
-    private boolean response;
-    private String lastResult = ""; //3possibilité
-    private int happiness;
-    private boolean isBetterThanOther;
-    private String photoUrlResponse;
+    private String lastResult; //3possibilité
+    private boolean joker;
     private String photoUrlGame;
     private int score;
+    private boolean isTouching;
 
     public StatsModel() {
     }
 
-    public StatsModel(String conditionOfOther, boolean response, String lastResult, boolean asWon, int happiness, boolean isBetterThanOther, String photoUrlResponse, String photoUrlGame, int score) {
-        this.conditionOfOther = conditionOfOther;
-        this.response = response;
+    public StatsModel(String lastResult, boolean joker, String photoUrlGame, int score, boolean isTouching) {
         this.lastResult = lastResult;
-        this.happiness = happiness;
-        this.isBetterThanOther = isBetterThanOther;
-        this.photoUrlResponse = photoUrlResponse;
+        this.joker = joker;
         this.photoUrlGame = photoUrlGame;
         this.score = score;
-    }
-
-    public String getConditionOfOther() {
-        return conditionOfOther;
-    }
-
-    public void setConditionOfOther(String conditionOfOther) {
-        this.conditionOfOther = conditionOfOther;
-    }
-
-    public boolean isResponse() {
-        return response;
-    }
-
-    public void setResponse(boolean response) {
-        this.response = response;
+        this.isTouching = isTouching;
     }
 
     public String getLastResult() {
@@ -49,28 +27,12 @@ public class StatsModel {
         this.lastResult = lastResult;
     }
 
-    public int getHappiness() {
-        return happiness;
+    public boolean isJoker() {
+        return joker;
     }
 
-    public void setHappiness(int happiness) {
-        this.happiness = happiness;
-    }
-
-    public boolean isBetterThanOther() {
-        return isBetterThanOther;
-    }
-
-    public void setBetterThanOther(boolean betterThanOther) {
-        isBetterThanOther = betterThanOther;
-    }
-
-    public String getPhotoUrlResponse() {
-        return photoUrlResponse;
-    }
-
-    public void setPhotoUrlResponse(String photoUrlResponse) {
-        this.photoUrlResponse = photoUrlResponse;
+    public void setJoker(boolean joker) {
+        this.joker = joker;
     }
 
     public String getPhotoUrlGame() {
@@ -87,5 +49,13 @@ public class StatsModel {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public boolean isTouching() {
+        return isTouching;
+    }
+
+    public void setTouching(boolean touching) {
+        isTouching = touching;
     }
 }

@@ -37,6 +37,7 @@ public class AuthController extends Observable {
     private UserModel mUserModel;
     private StorageReference mStorageRef;
     private FirebaseStorage mStorage;
+    private GameController mGameController;
 
     private AuthController(){
         mDatabase = FirebaseDatabase.getInstance();
@@ -45,9 +46,10 @@ public class AuthController extends Observable {
         mUser = mAuth.getCurrentUser();
         mStorage = FirebaseStorage.getInstance();
         if (isThereCurrentUser()) {
-            mUid = mUser.getUid();
+            setUid(mUser.getUid());
             mStorageRef = mStorage.getReference(getUid());
         }
+        mGameController = GameController.getInstance();
     }
 
     public static AuthController getInstance(){
@@ -62,9 +64,11 @@ public class AuthController extends Observable {
     }
 
     public boolean isThereCurrentUser() {
+        mGameController = GameController.getInstance();
         if (mUser != null) {
             setUid(mUser.getUid());
             loadModel();
+            mGameController.checkIfHaveGames(getUid());
         }
         return mUser != null;
     }

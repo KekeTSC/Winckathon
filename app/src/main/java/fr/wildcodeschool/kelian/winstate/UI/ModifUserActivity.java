@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -82,7 +87,13 @@ public class ModifUserActivity extends AppCompatActivity implements Observer {
                     .addOnSuccessListener(taskSnapshot -> {
                         Uri downloadUrl = taskSnapshot.getDownloadUrl();
                         newUserModel.setPhotoUrl(downloadUrl.toString());
-                        mAuthController.setUserModel(newUserModel);
+                        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users/" + mAuthController.getUid());
+                        userRef.setValue(newUserModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                startActivity(new Intent(ModifUserActivity.this, MainActivity.class));
+                            }
+                        });
                     });
         });
 

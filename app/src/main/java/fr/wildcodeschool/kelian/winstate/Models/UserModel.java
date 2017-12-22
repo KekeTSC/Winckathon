@@ -10,6 +10,7 @@ public class UserModel implements Parcelable{
     private String photoUrl = "";
     private String uid;
     private String gender = "";
+    private boolean isTouching;
 
     public UserModel() {
     }
@@ -58,6 +59,14 @@ public class UserModel implements Parcelable{
         this.gender = gender;
     }
 
+    public boolean isTouching() {
+        return isTouching;
+    }
+
+    public void setTouching(boolean touching) {
+        isTouching = touching;
+    }
+
     @Override
     public String toString() {
         return "UserModel{" +
@@ -66,6 +75,7 @@ public class UserModel implements Parcelable{
                 ", photoUrl='" + photoUrl + '\'' +
                 ", uid='" + uid + '\'' +
                 ", gender='" + gender + '\'' +
+                ", isTouching=" + isTouching +
                 '}';
     }
 
@@ -81,6 +91,7 @@ public class UserModel implements Parcelable{
         parcel.writeString(photoUrl);
         parcel.writeString(uid);
         parcel.writeString(gender);
+        parcel.writeByte((byte)(isTouching ? 0 : 1));
     }
 
     private UserModel(Parcel in) {
@@ -89,6 +100,7 @@ public class UserModel implements Parcelable{
         photoUrl = in.readString();
         uid = in.readString();
         gender = in.readString();
+        isTouching = in.readByte() != 0;
     }
 
     public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {

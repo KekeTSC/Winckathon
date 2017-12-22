@@ -13,8 +13,9 @@ import java.util.Observable;
 import fr.wildcodeschool.kelian.winstate.Models.UserModel;
 
 public class DataController extends Observable{
-    private static volatile DataController sInstance = null;
     private ArrayList<UserModel> mUserList = new ArrayList<>();
+    private static volatile DataController sInstance = null;
+    AuthController mAuthController;
 
     public DataController() {
     }
@@ -35,6 +36,7 @@ public class DataController extends Observable{
     }
 
     public void loadList(){
+        mAuthController = AuthController.getInstance();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -42,7 +44,9 @@ public class DataController extends Observable{
                 mUserList.clear();
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     UserModel userModel = data.getValue(UserModel.class);
-                    mUserList.add(userModel);
+                    if (!(userModel == mAuthController.getUserModel())){
+                        mUserList.add(userModel);
+                    }
                 }
                 setChanged();
                 notifyObservers();
