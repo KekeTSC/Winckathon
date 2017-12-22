@@ -56,6 +56,8 @@
         </activity>
         <activity android:name=".UI.SalonActivity" />
         <activity android:name=".UI.PhotoActivity" />
+        <activity android:name=".UI.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".UI.SpamActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".UI.ResultActivity"></activity>
