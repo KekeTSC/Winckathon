@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity implements Observer{
     private DataController mDataController;
     private AuthController mAuthController;
 
-    private int SPLASH_TIMEOUT = 3000;
+    private int SPLASH_TIMEOUT = 8000;
 
     private boolean mIsDataLoaded = false;
     private boolean mIsAnimationFinished = false;

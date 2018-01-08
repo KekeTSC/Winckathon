@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class HammerActivity extends AppCompatActivity implements Button.OnClickL
     private TextView mChrono;
     private int mCounter;
         private long timeElapsed;
-    Button b1, b2, b3, b4, b5, b6, b7, b8, b9;
+    ImageButton b1, b2, b3, b4, b5, b6, b7, b8, b9;
 
     int clickCount = 0;
     long firstTime;
